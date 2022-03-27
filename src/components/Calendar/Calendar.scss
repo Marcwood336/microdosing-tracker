@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Comfortaa:wght@300&family=Lobster&display=swap');
+
+$color_title : green;
+
+
+.Calendar{
+
+    margin: auto;
+    max-width: 60%;
+   
+
+}
+
+h1{
+    font-size: 3em;
+    margin: 0px;
+}
+
+h2{
+  margin: 0;
+  margin-bottom: 2vh;
+    font-size: 1.3em;
+    font-weight: 900;
+    text-decoration: underline;
+}
+
+h3{
+    margin: 0px;
+    font-size: 1.527em;
+    font-weight: 100;
+}
+
+body{
+  font-family: Comfortaa;
+
+}
+
+
+.title {
+  text-align:center;
+};
+
+
+.topSideCalendar{
+
+
+  display: grid;
+  grid-template-columns:repeat(7,1fr);
+
+max-width: 93%;
+margin: auto;
+  margin-top: 5vh;
+}
+
+
+.topSideCalendar>img{
+
+  grid-row-start:1;
+  grid-column-start: 7;
+  width: 6vw;
+  height: auto;
+
+}
+
+
+
+.blockContainer{
+
+padding-top: 8vh;
+display: grid;
+grid-template-columns: repeat(7,1fr);
+gap: 1.5vh;
+
+
+
+}
+
+
+
+
+.blockContainer > div > p{
+
+
+margin-top:30%;
+padding: 0px;
+font-weight: 900;
+text-align: center;
+
+}
+
+
+
+
+
+
+.pastDay{
+  background-color: black;
+  color: white;
+  width: 6vh;
+  height: 6vh;
+  justify-self: center;
+  text-align: center;
+
+  
+}
+
+.today{
+
+  border: 4px solid black;
+  justify-self: center;
+   box-sizing: border-box;
+  width: 6vh;
+  height: 6vh;
+  border-radius: 100%;
+  text-align: center;
+  animation-name: appearDisappear;
+  animation-duration: .9s;
+  animation-iteration-count: infinite;
+
+}
+
+
+
+.futureDay{
+
+  justify-self: center;
+  border: 4px solid black;
+  color: black;
+  width: 6vh;
+  height: 6vh;
+  box-sizing: border-box;
+  text-align: center;
+
+
+}
+
+
+.nextMicrodosingDaysWrapper{
+
+  min-width: 50%;
+  width: 50%;
+
+
+ }
+
+
+ .nextMicrodosingDaysWrapper > div >div  >p{
+font-size: 0.9em;
+display: inline-block;
+margin-top: 0px;
+margin-bottom: 10px;
+  
+
+ }
+
+
+
+.bottomSideCalendar{
+  
+  margin: auto;
+  margin-top: 10vh;
+  max-width: 95%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+
+  box-sizing: border-box;
+
+}
+
+.routineDayWrapper{
+
+  width: 50%;
+  margin-left: 15%;
+}
+
+.routineDayWrapper > button{
+
+font-family: Comfortaa;
+padding: 10px;
+width: 100%;
+border-radius: 10px;
+margin-top: 5vh;
+background-color: white;
+font-size: 12pt;
+font-weight: 600;
+}
+
+
+.routineDayWrapper >div >p{
+
+
+font-weight: 900;
+  
+}
+
+
+
+.bottomSideCalendar > div > p{
+  
+margin: 0px;
+font-size: 4vw;
+text-align: center;
+}
+
+.bottomSideCalendar > div> div > p{
+  
+margin: 0px;
+font-size: 2vw;
+text-align: center;
+}
+
+
+
+
+
+@keyframes appearDisappear{
+
+from {
+  background-color: yellow;
+  }
+to {
+  background-color: white;
+  }
+
+}
