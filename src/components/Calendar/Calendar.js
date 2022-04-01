@@ -77,7 +77,7 @@ return(<div className="Calendar">
   {calendar.map((m,i)=>{
 
     if(m.type==='today'){
-      return  <div key={i}  className='today'><p>{m.microdosing_day==='yes'?'m':<p>{m.date.toString().substring(7,10)}</p>}</p></div>
+      return  <div key={i}  className='today'><p>{m.microdosing_day==='yes'?'m':<span>{m.date.toString().substring(7,10)}</span>}</p></div>
     }
 
 
@@ -104,7 +104,7 @@ return(<div className="Calendar">
  <div>{calendar.map((m,i)=>{
      
      if(m.microdosing_day==='yes' && m.type==='future_day'){
-  return <div key={i+100}>•  <p><b>{ m.date.toString().substring(4,15)}</b> </p> <p key={i}> ---<b> { m.nth}th routine day </b></p> </div>
+  return <div key={i+100}>•  <p><b>{ m.date.toString().substring(4,15)}</b> </p> <p>  ---<b> { m.nth}th routine day </b></p> </div>
      }})
 
 
