@@ -34,7 +34,7 @@ const loginCall=()=>{
         if(result.success===true){
             navigate('/home')
         }else{
-            console.log('wrong pass');
+            console.log(result.message);
             setState((state)=>({...state,message:result.message}));
         }
 

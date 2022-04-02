@@ -13,11 +13,12 @@ const [state,setState] = useState({
     password2:'',
     email:'',
     termsAndConditions:false,
-    message:''
+    message:' ',
+    savedInDB:true
 
 })
 
-console.log(state);
+
 
 const inputReader=(event)=>{
 
@@ -79,8 +80,16 @@ const registerCall=()=>{
                 })
             })
             .then(result=>{
-                console.log(result);
+       return result.json()
             })
+            .then(result=>{
+
+                
+                if(result.success===true){
+                    setState((state)=>({...state,savedInDB:true}))
+                }
+            })
+            
 
         }else{
             setState((state)=>({...state,message:'password must coincide'}))
@@ -89,12 +98,16 @@ const registerCall=()=>{
     }
 
 
-// navigate('/check_mail')
 
 }
 
 
-    return(<div className='Register'>
+    return(state.savedInDB? <div className='success_message'>
+        <h1>Microdosing tracker</h1>
+        <img className='logo_success_message' src={Logo}/>
+        <p>You are almost ready to start tracking your microdosing routine</p>
+        <p><b>An email has been sent to your account to activate it</b></p>
+        </div>:<div className='Register'>
 
         <div className='banner_wrapper'>
             <div className='banner_top'>
@@ -107,17 +120,17 @@ const registerCall=()=>{
             </div>
             <div className='banner_middle'>
                 <div className='input_wrapper'>
-               <div className='input'><label htmlFor='username_input'>User</label> <input onChange={(event)=>{inputReader(event)}} name='username_input' type='text' /> </div>
-               <div className='input'><label htmlFor='email_input_input'>Email</label> <input onChange={(event)=>{inputReader(event)}} name='email_input' type='text' /> </div>
-               <div className='input'><label htmlFor='password_input'>Password</label> <input onChange={(event)=>{inputReader(event)}} name='password_input' type='password' /> </div>
-                <div className='input'><label htmlFor='name_input'>password</label> <input onChange={(event)=>{inputReader(event)}} name='password2_input' type='password' /> </div>
-                <div className='input termsAndConditions'> <input onChange={(event)=>{inputReader(event)}} name='terms_input' type='checkbox' /> <label htmlFor='terms_input'>I accept terms&Conditions</label></div>
+                    <div className='input'><label htmlFor='username_input'>User</label> <input onChange={(event)=>{inputReader(event)}} name='username_input' type='text' /> </div>
+                    <div className='input'><label htmlFor='email_input_input'>Email</label> <input onChange={(event)=>{inputReader(event)}} name='email_input' type='text' /> </div>
+                    <div className='input'><label htmlFor='password_input'>Password</label> <input onChange={(event)=>{inputReader(event)}} name='password_input' type='password' /> </div>
+                     <div className='input'><label htmlFor='name_input'>password</label> <input  onChange={(event)=>{inputReader(event)}} name='password2_input' type='password' /> </div>
+                     <div className='input termsAndConditions'> <input onChange={(event)=>{inputReader(event)}} name='terms_input' type='checkbox' /> <label htmlFor='terms_input'>I accept terms&Conditions</label></div>
           
                 </div>
 
             </div>
             <div className='banner_bottom'>
-                
+                <span className='message'>{state.message}</span>
                 <button onClick={()=>{registerCall()}}>Register</button>
 
             </div>
