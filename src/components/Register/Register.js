@@ -14,7 +14,7 @@ const [state,setState] = useState({
     email:'',
     termsAndConditions:false,
     message:' ',
-    savedInDB:true
+    savedInDB:false
 
 })
 

@@ -1,21 +1,85 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import './Calendar.scss';
-import settingIcon from '../../assets/setting_icon.png'
+import settingIcon from '../../assets/setting_icon.png';
+import Spinner from '../Spinner/Spinner';
+import Login from '../Login/Login';
+import { useNavigate } from 'react-router-dom';
 
-const Calendar=()=>{
 
+const Calendar=(props)=>{
+
+
+//3 states:
+// pending = id is undefined
+//logged = id is defined
+//not logged = user is not logged
+
+
+
+const navigate = useNavigate()
 
 let calendar = []
 let routineDay
 
 const [user,setUser] =useState({
-  name:'Genoveffo',
-  startingDate:1647457438499,
-  routineDay:0
-  
+  id:0,
+  name:undefined,
+  startingDate:undefined,
+  routineDay:0,
+  isLogged:undefined
+ 
+})
+
+
+useEffect(()=>{
+
+fetch('http://localhost:3001/get_user',{
+  credentials:'include'
+})
+.then(result=>{
+
+
+return result.json()
+
+})
+.then(result=>{
+
+
+
+if(result.user.isLogged===false){
+
+
+
+navigate('/')
+}else{
+
+console.log(result.user);
+
+const {username,_id,startDate} = result.user
+
+setUser((user)=>({...user,id:_id,name:username,startingDate:startDate}))
+
+}
+
+
+
+
 
 
 })
+.catch(err=>console.log(err))
+
+
+
+},[])
+
+
+
+
+
+// 1649838915000
+// 1650711198000
+// 1648464872000
 
 
 const now = new Date()
@@ -27,7 +91,7 @@ const oneDayMS = 1000*60*60*24;
 
 let daysMS = 0
 
-for(let i =0; i<=29; i++){
+for(let i =0; i<=27; i++){
 
 let fromStartingDay = new Date(startingDateMS+daysMS);
 let todayDate = new Date(now);
@@ -57,12 +121,9 @@ if(fromStartingDay.getTime() > todayDate.getTime()  && fromStartingDay.toString(
 
 }
 
-    
-  console.log(calendar);
 
 
-
-return(<div className="Calendar">
+const calendarToRender = ( <div>
 <div className='topSideCalendar' >
   <div>
   <h1>{user.name}'s Routine</h1>
@@ -124,6 +185,19 @@ return(<div className="Calendar">
   </div>
 
 </div>
+
+
+</div>)
+
+
+
+
+return(<div className="Calendar">
+  <button onClick={()=>{props.logout()}}>logout</button>
+
+
+
+{user.name!==undefined? calendarToRender: <Spinner/>}
 
 
 

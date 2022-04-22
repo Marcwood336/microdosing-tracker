@@ -1,28 +1,60 @@
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { useParams } from "react-router-dom";
+import  DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 
-const Activate_account =()=>{
+import './Activate_account.scss';
+import { useNavigate } from "react-router-dom";
+
+const Activate_account =(props)=>{
+
+
+
+
+
+const [startDate, setStartDate] = useState(new Date());
 
 const {id} = useParams()
-console.log('id:', id);
+const navigate = useNavigate()
 
-//TO DO
+const setDateCall =()=>{
 
-//manda id a back-end per verifica
-//ricevi status di success/ chiedi data di inizio
-//P.S - register comp must refresh after button is pushed
+    const dateToSend = startDate.getTime()
 
-//bravo marc
-
-    useEffect(()=>{
-
-        fetch('http://localhost/3001/activate_user:')
+    fetch('http://localhost:3001/set_date',{
+        method:'POST',
+        headers:{'Content-Type': 'application/json'},
+         body:JSON.stringify({
+            id: id,
+            startDate:dateToSend
+        })
     })
+    .then(result=>{
+        return result.json()
+    })
+    .then(result=>{
+        console.log(result);
+
+        if(result.startDate!==0){
+         
+            navigate('/')
+        }else{
+        console.log('check mail to set date');
+        }
+    })
+    .catch(err=>{console.log(err);})
+}
 
 
-    return(<div>
-        your account has been activated!
-        <p>set a starting date</p>
+    return(<div className="ActivateAccount">
+
+ <div className="centeredDiv">
+             <h1>Select a starting date</h1>
+ <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+  
+  <button onClick={()=>{setDateCall()}} className="setDateButton">Set starting date</button>
+
+ </div>
     </div>)
 }
 

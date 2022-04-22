@@ -1,6 +1,6 @@
 import './Login.scss';
 import Logo from '../../assets/logo2.svg'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import {Link,useNavigate} from 'react-router-dom';
 
 const Login =()=>{
@@ -15,21 +15,65 @@ const navigate = useNavigate()
 
 
 
+
+
+useEffect(()=>{
+
+fetch('http://localhost:3001/get_user',{
+  credentials:'include'
+})
+.then(result=>{
+
+
+return result.json()
+
+})
+.then(result=>{
+
+if(result.isLogged===true){
+    navigate('/home')
+}
+
+
+
+
+
+})
+.catch(err=>console.log(err))
+
+
+
+},[])
+
+
+
+
+
 const loginCall=()=>{
 
     fetch('http://localhost:3001/login',{
         method:'POST',
+        
+        credentials:'include',
+        
           headers: {
                     'Accept': 'application/json, text/plain, */*',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    
+                    
+
                             },
         body:JSON.stringify({
             email:state.email,
             password:state.password
         })
     })
-    .then(result=>{return result.json()})
     .then(result=>{
+  
+        return result.json()})
+    .then(result=>{
+
+console.log(result);
 
         if(result.success===true){
             navigate('/home')
