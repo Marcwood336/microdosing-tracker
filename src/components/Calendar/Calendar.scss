@@ -80,16 +80,18 @@ gap: 1.5vh;
 
 
 
+
+
 .blockContainer > div > p{
 
 
-margin-top:30%;
-padding: 0px;
+display: flex;
+justify-content: center;
 font-weight: 900;
 text-align: center;
 
-}
 
+}
 
 
 
@@ -100,11 +102,12 @@ text-align: center;
   color: white;
   width: 6vh;
   height: 6vh;
-  justify-self: center;
+  position: relative;
   text-align: center;
-
+    justify-self: center;
   
 }
+
 
 .today{
 

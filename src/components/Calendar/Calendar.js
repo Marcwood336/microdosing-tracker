@@ -53,7 +53,7 @@ if(result.user.isLogged===false){
 navigate('/')
 }else{
 
-console.log(result.user);
+// console.log(result.user);
 
 const {username,_id,startDate} = result.user
 
@@ -91,7 +91,9 @@ const oneDayMS = 1000*60*60*24;
 
 let daysMS = 0
 
-for(let i =0; i<=27; i++){
+
+
+for(let i =1; i<=30; i++){
 
 let fromStartingDay = new Date(startingDateMS+daysMS);
 let todayDate = new Date(now);
@@ -100,28 +102,29 @@ let microdosingDay = (n)=>{
   return n===1 || n===4 ||n===7| n===10 ||n===13||n===16||n===19||n===22||n===25||n===28?
  'yes':'no'}
 
-if(fromStartingDay.getTime() < todayDate.getTime()){
+if(fromStartingDay.getTime() < todayDate.getTime() && fromStartingDay.toString().substring(0,10)!==todayDate.toString().substring(0,10) ){
 
-  calendar.push({type:'past_day',nth:i+1,date:fromStartingDay,microdosing_day:microdosingDay(i+1)})
+  calendar.push({type:'past_day',nth:i,date:fromStartingDay,microdosing_day:microdosingDay(i)})
 }
 
 
-
 if(fromStartingDay.toString().substring(0,10)===todayDate.toString().substring(0,10)){
+
+
    routineDay = i+1
-   calendar.push({type:'today',nth:i+1,date:fromStartingDay,microdosing_day:microdosingDay(i+1)})
+   calendar.push({type:'today',nth:i,date:fromStartingDay,microdosing_day:microdosingDay(i)});
 }
 
 if(fromStartingDay.getTime() > todayDate.getTime()  && fromStartingDay.toString().substring(0,10)!==todayDate.toString().substring(0,10) ){
 
-  calendar.push({type:'future_day',nth:i+1,date:fromStartingDay,microdosing_day:microdosingDay(i+1)})
+  calendar.push({type:'future_day',nth:i,date:fromStartingDay,microdosing_day:microdosingDay(i)})
 }
 
 
 
 }
 
-
+console.log(calendar);
 
 const calendarToRender = ( <div>
 <div className='topSideCalendar' >
@@ -135,6 +138,7 @@ const calendarToRender = ( <div>
 <div className='blockContainer'>
 
 
+
   {calendar.map((m,i)=>{
 
     if(m.type==='today'){
@@ -145,11 +149,10 @@ const calendarToRender = ( <div>
 
 
     return  m.type==='past_day'? 
-      <div key={i} className='pastDay'><p>{m.date.toString().substring(7,10)}</p></div>:
+      <div key={i} className='pastDay'><p> {m.microdosing_day==='yes'? <u>M</u>: m.date.toString().substring(7,10)  }</p></div>:
       <div key={i} className='futureDay'>
-        <p>{m.microdosing_day==='yes'?'m':''}</p>
+        <p>{m.microdosing_day==='yes'? <u>M</u>:m.date.toString().substring(7,10)}</p>
       </div>
-
 
    
  
@@ -159,6 +162,10 @@ const calendarToRender = ( <div>
   </div>
 
 <div className='bottomSideCalendar' >
+
+
+
+
 
 <div className='nextMicrodosingDaysWrapper'>
   <h2>Your next microdosing days:</h2>
