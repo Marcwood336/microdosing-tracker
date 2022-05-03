@@ -14,7 +14,24 @@ const Activate_account =(props)=>{
 
 const [startDate, setStartDate] = useState(new Date());
 
-const {id} = useParams()
+  const {id_url} = useParams()
+
+
+const id_finder=()=>{
+
+  
+    if(id_url!== undefined){
+        return id_url
+    }else{
+        return props.user_id
+    }
+
+}
+
+
+console.log(id_finder());
+
+
 const navigate = useNavigate()
 
 const setDateCall =()=>{
@@ -23,9 +40,10 @@ const setDateCall =()=>{
 
     fetch('http://localhost:3001/set_date',{
         method:'POST',
+        credentials:"include",
         headers:{'Content-Type': 'application/json'},
          body:JSON.stringify({
-            id: id,
+            id: id_finder(),
             startDate:dateToSend
         })
     })
@@ -33,7 +51,7 @@ const setDateCall =()=>{
         return result.json()
     })
     .then(result=>{
-        console.log(result);
+        console.log(new Date(result.startDate));
 
         if(result.startDate!==0){
          

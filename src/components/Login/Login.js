@@ -129,7 +129,7 @@ switch(event.target.name){
             <div className='banner_middle'>
                 <div className='input_wrapper'>
                <div className='input'><label htmlFor='email'>email</label> <input value={state.email} onChange={(event)=>{inputReader(event)}} name='email' type='text' /> </div>
-               <div className='input'><label htmlFor='password'>password</label> <input value={state.password} onChange={(event)=>{inputReader(event)}} name='password' type='text' /> </div>
+               <div className='input'><label htmlFor='password'>password</label> <input value={state.password} onChange={(event)=>{inputReader(event)}} name='password' type='password' /> </div>
 
           
                 </div>
