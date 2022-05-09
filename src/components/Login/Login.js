@@ -26,7 +26,7 @@ axios.get('https://safe-chamber-03142.herokuapp.com/get_user',{
 .then(result=>{
 
 
-return result.json()
+return result
 
 })
 .then(result=>{
@@ -55,10 +55,13 @@ const loginCall= ()=>{
 
     // 'https://safe-chamber-03142.herokuapp.com/login'
 
-    axios('https://safe-chamber-03142.herokuapp.com/login',{
-        method:'POST',
+    axios.post('https://safe-chamber-03142.herokuapp.com/login', ({
+            email:state.email,
+            password:state.password
+        }),{
         
-        credentials:'include',
+        
+        withCredentials:true,
         
         
           headers: {
@@ -68,14 +71,11 @@ const loginCall= ()=>{
                     
 
                             },
-        body:JSON.stringify({
-            email:state.email,
-            password:state.password
-        })
+     
     })
     .then(result=>{
   
-        return result.json()})
+        return result})
     .then(result=>{
 
 console.log(result);
@@ -83,7 +83,7 @@ console.log(result);
         if(result.success===true){
             navigate('/home')
         }else{
-            console.log(result.message);
+          
             setState((state)=>({...state,message:result.message}));
         }
 
