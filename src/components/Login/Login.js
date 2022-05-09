@@ -22,7 +22,7 @@ useEffect(()=>{
 
 https://safe-chamber-03142.herokuapp.com/get_user
 
-axios.get('https://safe-chamber-03142.herokuapp.com/login',{
+axios.get('https://safe-chamber-03142.herokuapp.com/get_user',{
   withCredentials:true,
   headers:{
       withCredentials:true,
