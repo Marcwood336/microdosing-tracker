@@ -6,6 +6,7 @@ import Modal from '../Modal/Modal'
 
 
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 const Calendar=(props)=>{
@@ -32,18 +33,17 @@ useEffect(()=>{
 
   // https://safe-chamber-03142.herokuapp.com/get_user
 
-fetch('https://safe-chamber-03142.herokuapp.com/get_user',{
-  credentials:'include',
+axios.get('http://localhost:3001/get_user',{
+  
+      withCredentials:true,
       method:'GET',
       headers: {
-                    'Accept': 'application/json, text/plain, */*',
-                    'Content-Type': 'application/json',
+             withCredentials:true,
                      },
 })
 .then(result=>{
 
-
-return result.json()
+return result
 
 })
 .then(result=>{
@@ -52,20 +52,20 @@ console.log(result);
 
 // result.user.isLogged===false
 
-if(result.user === undefined){
+if(result.data.user === undefined){
 
 
 
-navigate('/')
-}else{
+// return navigate('/')
+}
 
-// console.log(result.user);
+console.log(result.data.user,'supposed user obj');
 
-const {username,_id,startDate} = result.user
+const {username,_id,startDate} = result.data.user
 
 setUser((user)=>({...user,id:_id,name:username,startingDate:startDate}))
 
-}})
+})
 .catch(err=>console.log(err))
 },[])
 

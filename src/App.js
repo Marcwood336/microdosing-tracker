@@ -70,7 +70,9 @@ const logoutCall= ()=>{
 
 console.log('fired logout');
 
-fetch('https://safe-chamber-03142.herokuapp.com/logout',{
+// https://safe-chamber-03142.herokuapp.com
+
+fetch('http://localhost:3001/logout',{
   credentials:'include'
 })
 .then(result=>{
@@ -80,7 +82,7 @@ fetch('https://safe-chamber-03142.herokuapp.com/logout',{
    return result.json()
 })
 .then(result=>{
-
+console.log(result);
 if(result.success ===true){
 
 navigate('/')

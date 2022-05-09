@@ -20,19 +20,29 @@ const navigate = useNavigate()
 
 useEffect(()=>{
 
-axios.get('https://safe-chamber-03142.herokuapp.com/get_user',{
+https://safe-chamber-03142.herokuapp.com/get_user
+
+axios.get('http://localhost:3001/get_user',{
   withCredentials:true,
+  headers:{
+      withCredentials:true,
+      'Content-Type': 'application/json'
+  }
 })
 .then(result=>{
-
+console.log('response after get user',result);
 
 return result
 
+
+
+
 })
 .then(result=>{
 
-if(result.isLogged===true){
-    navigate('/home')
+if(result.data){
+  console.log(result.success);
+    // navigate('/home')
 }
 
 
@@ -52,10 +62,12 @@ if(result.isLogged===true){
 
 const loginCall= ()=>{
 
+    console.log('login fired');
+
 
     // 'https://safe-chamber-03142.herokuapp.com/login'
 
-    axios.post('https://safe-chamber-03142.herokuapp.com/login', ({
+    axios.post('http://localhost:3001/login', ({
             email:state.email,
             password:state.password
         }),{
@@ -64,13 +76,11 @@ const loginCall= ()=>{
         withCredentials:true,
         
         
+        
           headers: {
-                    'Accept': 'application/json, text/plain, */*',
-                    'Content-Type': 'application/json',
-                    
-                    
-
-                            },
+                    withCredentials:'true'
+           
+                            }
      
     })
     .then(result=>{
@@ -80,7 +90,8 @@ const loginCall= ()=>{
 
 console.log(result);
 
-        if(result.success===true){
+
+        if(result.data.success===true){
             navigate('/home')
         }else{
           
