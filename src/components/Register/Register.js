@@ -67,8 +67,9 @@ const registerCall=()=>{
         
         if(state.password===state.password2){
 
-            fetch('http://localhost:3001/register',{
+            fetch('https://safe-chamber-03142.herokuapp.com/register',{
                 method:'POST',
+                credentials:'include',
                   headers: {
                     'Accept': 'application/json, text/plain, */*',
                     'Content-Type': 'application/json'

@@ -19,7 +19,7 @@ const navigate = useNavigate();
 
 
 const changePassCall=()=>{
-    fetch('http://localhost:3001/set_date',{
+    fetch('https://safe-chamber-03142.herokuapp.com/set_date',{
         method:'POST',
         headers:{'Content-Type': 'application/json'},
          body:JSON.stringify({

@@ -19,7 +19,7 @@ const navigate = useNavigate()
 
 useEffect(()=>{
 
-fetch('http://localhost:3001/get_user',{
+fetch('https://safe-chamber-03142.herokuapp.com/get_user',{
   credentials:'include'
 })
 .then(result=>{
@@ -51,7 +51,10 @@ if(result.isLogged===true){
 
 const loginCall=()=>{
 
-    fetch('http://localhost:3001/login',{
+
+    // 'https://safe-chamber-03142.herokuapp.com/login'
+
+    fetch('https://safe-chamber-03142.herokuapp.com/login',{
         method:'POST',
         
         credentials:'include',

@@ -30,8 +30,15 @@ const [user,setUser] =useState({
 
 useEffect(()=>{
 
-fetch('http://localhost:3001/get_user',{
-  credentials:'include'
+  // https://safe-chamber-03142.herokuapp.com/get_user
+
+fetch('https://safe-chamber-03142.herokuapp.com/get_user',{
+  credentials:'include',
+      method:'GET',
+      headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json',
+                     },
 })
 .then(result=>{
 
@@ -41,9 +48,11 @@ return result.json()
 })
 .then(result=>{
 
+console.log(result);
 
+// result.user.isLogged===false
 
-if(result.user.isLogged===false){
+if(result.user === undefined){
 
 
 
@@ -117,7 +126,7 @@ const daysBeforeStart = ()=>{
 
 const final = Math.floor(difference/oneDayMS)
 
-console.log(final+1);
+
 
  return final+1
 

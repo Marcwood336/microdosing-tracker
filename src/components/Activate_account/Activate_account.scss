@@ -52,8 +52,12 @@ clear: both  !important;
 margin-top: 40px;
 padding: 30px;
 width: 50vw;
-border: none;
+border: 2px solid black;
 font-family: Comfortaa;
 font-weight: 800;
 
+}
+.setDateButton:hover{
+    background-color: aqua;
+    
 }

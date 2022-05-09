@@ -29,8 +29,11 @@ const App=()=>{
 
   useEffect(()=>{
 
-fetch('http://localhost:3001/get_user',{
-  credentials:'include'
+    
+
+fetch('https://safe-chamber-03142.herokuapp.com/get_user',{
+  credentials:'include',
+  method:'GET'
 })
 .then(result=>{
 return result.json()
@@ -38,10 +41,13 @@ return result.json()
 },[0])
 .then(result=>{
 
-
+if(result.user){
 const {username,_id} = result.user
 
  setUser(()=>({...user,id:_id,username:username }))
+}
+
+
 
 })
 .catch(err=>console.log(err))
@@ -64,7 +70,7 @@ const logoutCall= ()=>{
 
 console.log('fired logout');
 
-fetch('http://localhost:3001/logout',{
+fetch('https://safe-chamber-03142.herokuapp.com/logout',{
   credentials:'include'
 })
 .then(result=>{

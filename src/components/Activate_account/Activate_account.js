@@ -16,6 +16,7 @@ const [startDate, setStartDate] = useState(new Date());
 
   const {id_url} = useParams()
 
+console.log(id_url);
 
 const id_finder=()=>{
 
@@ -38,7 +39,7 @@ const setDateCall =()=>{
 
     const dateToSend = startDate.getTime()
 
-    fetch('http://localhost:3001/set_date',{
+    fetch('https://safe-chamber-03142.herokuapp.com/set_date',{
         method:'POST',
         credentials:"include",
         headers:{'Content-Type': 'application/json'},
