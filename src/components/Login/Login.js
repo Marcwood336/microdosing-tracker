@@ -2,6 +2,7 @@ import './Login.scss';
 import Logo from '../../assets/logo2.svg'
 import { useState,useEffect } from 'react';
 import {Link,useNavigate} from 'react-router-dom';
+import axios from 'axios';
 
 const Login =()=>{
 
@@ -19,8 +20,8 @@ const navigate = useNavigate()
 
 useEffect(()=>{
 
-fetch('https://safe-chamber-03142.herokuapp.com/get_user',{
-  credentials:'include'
+axios.get('https://safe-chamber-03142.herokuapp.com/get_user',{
+  withCredentials:true,
 })
 .then(result=>{
 
@@ -49,15 +50,16 @@ if(result.isLogged===true){
 
 
 
-const loginCall=()=>{
+const loginCall= ()=>{
 
 
     // 'https://safe-chamber-03142.herokuapp.com/login'
 
-    fetch('https://safe-chamber-03142.herokuapp.com/login',{
+    axios('https://safe-chamber-03142.herokuapp.com/login',{
         method:'POST',
         
         credentials:'include',
+        
         
           headers: {
                     'Accept': 'application/json, text/plain, */*',
