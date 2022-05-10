@@ -43,7 +43,7 @@ return result
 
 console.log( result.data.user._id);
 
-if(result.data.user===undefined)
+if(result.data.user)
 
     navigate('/home')
 
