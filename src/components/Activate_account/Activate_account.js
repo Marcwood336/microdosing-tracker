@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const Activate_account =(props)=>{
 
 
-
+console.log( 'props activate account--->',props);
 
 
 const [startDate, setStartDate] = useState(new Date());

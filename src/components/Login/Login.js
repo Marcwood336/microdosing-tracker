@@ -41,7 +41,7 @@ return result
 .then(result=>{
 
 
-console.log( result.data.user._id);
+
 
 if(result.data.user)
 

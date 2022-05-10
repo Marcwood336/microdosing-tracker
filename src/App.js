@@ -56,13 +56,7 @@ const {username,_id} = result.user
 },[])
     
 
-
-// const [user,setUser] =useState({
-//   name:'Genoveffo',
-//   startingDate:1647457438499,
-//   routineDay:0
-// })
-
+console.log('app state--->', user);
 
 
 
@@ -119,7 +113,7 @@ return <div className='App'>
 
           <Route path='/check_mail' element={<p>Check your email adresso to activate your account</p>}/>
 
-          <Route path='/activate_user/:id' element={<Activate_account/>}/>
+          <Route path='/activate_user/:id' element={<Activate_account  />}/>
 
           <Route path='/change_start'  element={<Activate_account user_id={user.id}/>}/>
             
