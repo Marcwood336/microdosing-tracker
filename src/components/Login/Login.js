@@ -40,10 +40,12 @@ return result
 })
 .then(result=>{
 
-if(result.data){
-  console.log(result.success);
+
+console.log(result.data);
+
+
     // navigate('/home')
-}
+
 
 
 
