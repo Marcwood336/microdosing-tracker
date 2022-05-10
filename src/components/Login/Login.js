@@ -41,9 +41,9 @@ return result
 .then(result=>{
 
 
-console.log(result.data);
+console.log( result.data.user.id);
 
-if(result.data.user.id)
+if(result.data.user.id!==undefined)
 
     navigate('/home')
 
