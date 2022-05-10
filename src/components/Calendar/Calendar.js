@@ -56,10 +56,10 @@ if(result.data.user === undefined){
 
 
 
-// return navigate('/')
+return navigate('/')
 }
 
-console.log(result.data.user,'supposed user obj');
+
 
 const {username,_id,startDate} = result.data.user
 

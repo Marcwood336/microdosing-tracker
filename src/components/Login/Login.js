@@ -43,8 +43,9 @@ return result
 
 console.log(result.data);
 
+if(result.data.user.id)
 
-    // navigate('/home')
+    navigate('/home')
 
 
 
