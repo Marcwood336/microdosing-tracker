@@ -30,7 +30,7 @@ const id_finder=()=>{
 }
 
 
-console.log(id_finder());
+console.log('id in change date--->',id_finder());
 
 
 const navigate = useNavigate()
