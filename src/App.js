@@ -72,7 +72,7 @@ console.log('fired logout');
 
 // https://safe-chamber-03142.herokuapp.com
 
-fetch('http://localhost:3001/logout',{
+fetch(' https://safe-chamber-03142.herokuapp.com/logout',{
   credentials:'include'
 })
 .then(result=>{
