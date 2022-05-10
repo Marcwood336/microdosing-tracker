@@ -16,7 +16,7 @@ const [startDate, setStartDate] = useState(new Date());
 
   const {id_url} = useParams()
 
-console.log(id_url);
+
 
 const id_finder=()=>{
 
@@ -28,6 +28,8 @@ const id_finder=()=>{
     }
 
 }
+
+id_finder()
 
 
 console.log('id in change date--->',id_finder());
